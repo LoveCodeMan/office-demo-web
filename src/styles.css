@@ -6,6 +6,13 @@
   background-color: brown;
 }
 
+.ant-input {
+  font-size: 12px;
+}
+
+.ant-form-explain, .ant-form-extra {
+  font-size: 12px;
+}
 
 @-webkit-keyframes fadeInDown {
   from {

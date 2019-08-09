@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, [Validators.required]],
       remember: [true]
     });
@@ -32,13 +32,17 @@ export class LoginComponent implements OnInit {
     let account = this.validateForm.value;
     this.service.login(account).subscribe(datas => {
       this.isRight = datas;
+      if (this.isRight) {
+        this.message.success('登录成功', {
+          nzDuration: 1000
+        });
+        this.router.navigate(['home'])
+      } else {
+        this.message.error('此用户不存在', {
+          nzDuration: 1000
+        });
+      }
     })
-    // if (this.validateForm.value.userName === "zack" && this.validateForm.value.password === "123") {
-    //   this.message.success('登录成功', {
-    //     nzDuration: 1000
-    //   });
-    //   this.router.navigate(['home'])
-    // }
   }
 
   register() {
