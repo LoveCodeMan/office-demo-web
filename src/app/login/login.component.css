@@ -1,0 +1,55 @@
+.login_box {
+  position: absolute;
+  padding: 50px 24px;
+  top: 30%;
+  left: 66%;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 15px #000000, 0px 0px 1px #000000 inset;
+  animation: fadeInDown 0.8s;
+  border-radius: 10px;
+}
+
+.login-form {
+  max-width: 300px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+.register {
+  color: blueviolet;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}

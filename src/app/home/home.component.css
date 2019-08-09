@@ -1,0 +1,49 @@
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+nz-breadcrumb-item a {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+nz-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 1);
+  margin: 16px 30px 16px 0;
+  float: left;
+  color: #ffffff;
+}
+
+.header-menu {
+  line-height: 64px;
+}
+
+.inner-layout {
+  padding: 0 24px 24px;
+}
+
+.ant-layout-header {
+  background-color: brown;
+}
+
+.ant-breadcrumb-separator {
+  margin: 0 8px;
+  color: #ffffff;
+}
+
+.log_out {
+  text-align: right;
+  color: whitesmoke;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}

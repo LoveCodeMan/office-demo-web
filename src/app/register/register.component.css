@@ -1,0 +1,23 @@
+.register_wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  padding: 30px 0;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 15px #000000, 0px 0px 1px #000000 inset;
+  border-radius: 10px;
+  /* animation: fadeInDown 0.8s; */
+}
+
+[nz-form] {
+  min-width: 600px;
+}
+
+.phone-select {
+  width: 70px;
+}
+
+.register-are {
+  margin-bottom: 8px;
+}
