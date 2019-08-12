@@ -15,12 +15,8 @@ const httpOptions = {
 export class RegisterService {
   constructor(private http: HttpClient) { }
 
-  register(datas): Observable<any> {
-    const data = datas
-    console.log(typeof(data))
-    console.log("Service所接收到的数据为：" + data)
-    return this.http.get('http://localhost:8080/register/userSearch', { params: data }).pipe(tap(response => response));
-    console.log("函数已执行")
+  register(data): Observable<any> {
+    return this.http.post('http://localhost:8080/register/userSearch', { username: data }, httpOptions).pipe(tap(response => response));
   }
 }
 

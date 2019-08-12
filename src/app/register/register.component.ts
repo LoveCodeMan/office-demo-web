@@ -12,6 +12,7 @@ import { RegisterService } from './register.service'
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
 
+
   // 初始化表单内容
   constructor(private fb: FormBuilder, private router: Router, private service: RegisterService) {
     this.validateForm = this.fb.group({
@@ -50,54 +51,59 @@ export class RegisterComponent implements OnInit {
   }
 
   // 验证用户名是否已注册
+  // checkname(event) {
+  //   let val = event
+  //   this.userSearch(val)
+  // }
+
+  // throttle(func, wait) {
+  //   let timeout;
+  //   return function () {
+  //     let context = this;
+  //     let args = arguments;
+
+  //     if (timeout) clearTimeout(timeout);
+
+  //     timeout = setTimeout(() => {
+  //       func.apply(context, args)
+  //       console.log("zhixing")
+  //     }, wait);
+  //   }
+  // }
+
+  // userSearch(val){
+  //   let isRight = false 
+  //   this.service.register(val).subscribe(data => {
+  //     isRight = data
+  //   })
+  //   if (isRight) {
+  //     console.log(isRight)
+  //   } else {
+  //     console.log("error")
+  //   }
+  // }
+
   userNameAsyncValidator = (control: FormControl) =>
     new Observable((observer: Observer<ValidationErrors | null>) => {
+      let isRight = ''
       setTimeout(() => {
-        let isRight = false;
-        let username = control.value
+        let username = control.value;
         this.service.register(username).subscribe(data => {
+          // console.log("data的值为" + data);
+          // sessionStorage.setItem("status", data);
           isRight = data
         })
+        // isRight = sessionStorage.getItem("status")
+        // sessionStorage.setItem("status", "")
+        // console.log("isRight的值为：" + isRight)
         if (isRight) {
           observer.next({ error: true, duplicated: true });
-        } else {
+        } else if (isRight) {
           observer.next(null);
         }
         observer.complete();
       }, 1000);
     });
-
-  // throttle(func, wait, control, observer) {
-  //   let previous = 0;
-  //   let con = control
-  //   let obs = observer
-  //   return function () {
-  //     let now = Date.now();
-  //     let context = this;
-  //     let args = arguments;
-  //     if (now - previous > wait) {
-  //       func.apply(context, args);
-  //       previous = now;
-  //     }
-  //   }
-  // }
-
-  // userSearch(con, obs) {
-  //   new Observable((observer: Observer<ValidationErrors | null>) => {
-  //     let isRight = false;
-  //     this.service.register(con.value).subscribe(data => {
-  //       isRight = data
-  //     })
-  //     if (isRight) {
-  //       observer.next({ error: true, duplicated: true });
-  //     } else {
-  //       observer.next(null);
-  //     }
-  //     observer.complete();
-  //   }
-  //   )
-  // }
-
 
   confirmValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
