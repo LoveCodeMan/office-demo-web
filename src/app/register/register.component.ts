@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } fro
 import { Observable, Observer } from 'rxjs';
 import { Router } from '@angular/router'
 import { RegisterService } from './register.service'
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-register',
@@ -11,16 +12,17 @@ import { RegisterService } from './register.service'
 })
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
-
+  isRight = false
+  isSubmit = false
 
   // 初始化表单内容
-  constructor(private fb: FormBuilder, private router: Router, private service: RegisterService) {
+  constructor(private fb: FormBuilder, private router: Router, private service: RegisterService, private message: NzMessageService) {
     this.validateForm = this.fb.group({
       userName: ['', [Validators.required], [this.userNameAsyncValidator]],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required]],
       confirm: ['', [this.confirmValidator]],
-      comment: ['', [Validators.required]]
+      comment: ['']
     });
   }
 
@@ -32,7 +34,29 @@ export class RegisterComponent implements OnInit {
       this.validateForm.controls[key].markAsDirty();
       this.validateForm.controls[key].updateValueAndValidity();
     }
-    console.log(value);
+    let data = {
+      username: '',
+      email: '',
+      password: '',
+      comment: ''
+    }
+    data.username = value.userName 
+    data.email = value.email
+    data.password = value.password
+    data.comment = value.comment
+    this.service.submit(data).subscribe(data => {
+      this.isSubmit = data
+      if (this.isSubmit) {
+        this.message.success('注册成功！', {
+          nzDuration: 2000
+        });
+        this.router.navigate(['login'])
+      } else {
+        this.message.error('注册失败，请再次核实相关信息再提交！', {
+          nzDuration: 1000
+        });
+      }
+    })
   }
 
   // 表单内容重置
@@ -49,62 +73,25 @@ export class RegisterComponent implements OnInit {
   validateConfirmPassword(): void {
     setTimeout(() => this.validateForm.controls.confirm.updateValueAndValidity());
   }
-
-  // 验证用户名是否已注册
-  // checkname(event) {
-  //   let val = event
-  //   this.userSearch(val)
-  // }
-
-  // throttle(func, wait) {
-  //   let timeout;
-  //   return function () {
-  //     let context = this;
-  //     let args = arguments;
-
-  //     if (timeout) clearTimeout(timeout);
-
-  //     timeout = setTimeout(() => {
-  //       func.apply(context, args)
-  //       console.log("zhixing")
-  //     }, wait);
-  //   }
-  // }
-
-  // userSearch(val){
-  //   let isRight = false 
-  //   this.service.register(val).subscribe(data => {
-  //     isRight = data
-  //   })
-  //   if (isRight) {
-  //     console.log(isRight)
-  //   } else {
-  //     console.log("error")
-  //   }
-  // }
-
+  
+  // 验证用户名是否可用
   userNameAsyncValidator = (control: FormControl) =>
     new Observable((observer: Observer<ValidationErrors | null>) => {
-      let isRight = ''
       setTimeout(() => {
         let username = control.value;
         this.service.register(username).subscribe(data => {
-          // console.log("data的值为" + data);
-          // sessionStorage.setItem("status", data);
-          isRight = data
+          this.isRight = data
+          if (this.isRight) {
+            observer.next(null);
+          } else {
+            observer.next({ error: true, duplicated: true });
+          }
+          observer.complete();
         })
-        // isRight = sessionStorage.getItem("status")
-        // sessionStorage.setItem("status", "")
-        // console.log("isRight的值为：" + isRight)
-        if (isRight) {
-          observer.next({ error: true, duplicated: true });
-        } else if (isRight) {
-          observer.next(null);
-        }
-        observer.complete();
       }, 1000);
     });
 
+// 确认前后密码是否一致
   confirmValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { error: true, required: true };

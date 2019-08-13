@@ -10,8 +10,7 @@ nz-breadcrumb-item a {
 
 nz-content {
   background: #fff;
-  padding: 24px;
-  min-height: 280px;
+  /* padding: 5% 0 0 5%; */
 }
 
 .logo {
@@ -47,3 +46,9 @@ nz-content {
   font-weight: bold;
   cursor: pointer;
 }
+
+.inner-content {
+  background-color: #ffffff;
+  min-height: 280px;
+}
+

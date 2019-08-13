@@ -7,17 +7,24 @@
       <div nz-col nzSpan="16" style="text-align: right">
         <nz-breadcrumb nzSeparator="|">
           <nz-breadcrumb-item>
-            <a>Ant Design</a>
+            <a>工作台</a>
           </nz-breadcrumb-item>
           <nz-breadcrumb-item>
-            <a>Component</a>
+            <a>公文管理</a>
           </nz-breadcrumb-item>
           <nz-breadcrumb-item>
-            <a>An Application</a>
+            <a>督查督办PT</a>
           </nz-breadcrumb-item>
         </nz-breadcrumb>
       </div>
-      <div nz-col nzSpan="4" class="log_out" (click)="exit()">Log Out</div>
+      <div nz-col nzSpan="4" class="log_out">
+        <div>欢迎您{{username}}</div>
+        <i nz-icon nzType="poweroff" nzTheme="outline" (click)="exit()"></i></div>
     </div>
   </nz-header>
+  <nz-content>
+    <div class="inner-content">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
 </nz-layout>
