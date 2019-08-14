@@ -1,16 +1,29 @@
+nz-header {
+  height: 64px;
+}
+
+nz-content {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  box-sizing: border-box;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 nz-breadcrumb {
-  margin: 16px 0;
+  margin: 0;
+  font-size: 16px;
 }
 
 nz-breadcrumb-item a {
   color: #ffffff;
   font-weight: bold;
   font-size: 16px;
-}
-
-nz-content {
-  background: #fff;
-  /* padding: 5% 0 0 5%; */
 }
 
 .logo {
@@ -47,8 +60,28 @@ nz-content {
   cursor: pointer;
 }
 
-.inner-content {
+/* .inner-content {
   background-color: #ffffff;
   min-height: 280px;
+} */
+
+.ant-breadcrumb {
+  line-height: 64px;
 }
 
+.user_name {
+  color: darkorange;
+  font-size: 18px;
+  margin-left: 46%;
+  text-decoration: underline;
+}
+
+.anticon {
+  margin-right: 10px;
+}
+
+.ant-modal-confirm .ant-modal-confirm-btns {
+  float: left;
+  display: flex;
+  justify-content: center;
+}

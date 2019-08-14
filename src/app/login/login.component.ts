@@ -30,15 +30,15 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     let account = this.validateForm.value;
+    console.log(account)
     this.service.login(account).subscribe(datas => {
       this.isRight = datas;
       if (this.isRight) {
         this.message.success('登录成功', {
           nzDuration: 1000
         });
-        this.router.navigate(['home'],{
-          queryParams: {username: account.value.username}
-        })
+        this.router.navigate(['home'])
+        sessionStorage.setItem("username",account.username)
       } else {
         this.message.error('此用户不存在', {
           nzDuration: 1000

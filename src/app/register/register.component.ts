@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
       password: '',
       comment: ''
     }
-    data.username = value.userName 
+    data.username = value.userName
     data.email = value.email
     data.password = value.password
     data.comment = value.comment
@@ -48,12 +48,13 @@ export class RegisterComponent implements OnInit {
       this.isSubmit = data
       if (this.isSubmit) {
         this.message.success('注册成功！', {
-          nzDuration: 2000
+          nzDuration: 1000
         });
+        this.validateForm.reset();
         this.router.navigate(['login'])
       } else {
         this.message.error('注册失败，请再次核实相关信息再提交！', {
-          nzDuration: 1000
+          nzDuration: 2000
         });
       }
     })
@@ -73,7 +74,7 @@ export class RegisterComponent implements OnInit {
   validateConfirmPassword(): void {
     setTimeout(() => this.validateForm.controls.confirm.updateValueAndValidity());
   }
-  
+
   // 验证用户名是否可用
   userNameAsyncValidator = (control: FormControl) =>
     new Observable((observer: Observer<ValidationErrors | null>) => {
@@ -91,7 +92,7 @@ export class RegisterComponent implements OnInit {
       }, 1000);
     });
 
-// 确认前后密码是否一致
+  // 确认前后密码是否一致
   confirmValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { error: true, required: true };

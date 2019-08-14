@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute  } from '@angular/router'
+import { Router, ActivatedRoute, Params  } from '@angular/router'
 import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
@@ -12,15 +12,15 @@ export class HomeComponent implements OnInit {
   username = ''
   
   ngOnInit() {
-    this.activedRoute.queryParams.subscribe(queryParms =>{
-      this.username = queryParms.username
-      console.log("username得值为：" + this.username)
-    })
+    this.username = sessionStorage.getItem("username")
+    console.log("username的值为：" + this.username)
+    this.router.navigate(['home/index'])
   }
 
   exit() {
     this.modalService.confirm({
       nzTitle: '是否确认退出',
+      nzContent:'<i nz-icon nzType="exclamation-circle" nzTheme="outline"></i>',
       nzOkText: '确认',
       nzOkType: 'danger',
       nzOnOk: () => this.router.navigate(['login']),

@@ -1,3 +1,105 @@
 <div class="index-page">
-  
+  <div nz-col nzSpan="21" class="table_display">
+    <!-- 第一行form表单start -->
+    <div nz-row class="form_row">
+      <div nz-col nzSpan="10" class="form_table">
+        <nz-table #tableOne [nzData]="listData" nzShowPagination="false">
+          <thead>
+            <tr>
+              <th nzAlign="left" nzWidth="150px">
+                <i nz-icon nzType="appstore" nzTheme="fill"></i>待办事项
+              </th>
+              <th nzAlign="right">
+                <i nz-icon nzType="plus-square" nzTheme="fill"></i>更多
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tableOne.data" (dblclick)="alert()">
+              <td nzAlign="left">{{ data.event }}</td>
+              <td nzAlign="right">{{ data.time }}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+
+      <div nz-col nzSpan="10" class="form_table">
+        <nz-table #tableTwo [nzData]="listData" nzShowPagination="false">
+          <thead>
+            <tr>
+              <th nzAlign="left" nzWidth="150px">
+                <i nz-icon nzType="appstore" nzTheme="fill"></i>待办事项
+              </th>
+              <th nzAlign="right">
+                <i nz-icon nzType="plus-square" nzTheme="fill"></i>更多
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tableOne.data">
+              <td nzAlign="left">{{ data.event }}</td>
+              <td nzAlign="right">{{ data.time }}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+    <!-- 第一行form表单end -->
+
+    <!--  第二行fomr表单start  -->
+    <div nz-row class="form_row">
+      <div nz-col nzSpan="10" class="form_table">
+        <nz-table #tableThree [nzData]="listData" nzShowPagination="false">
+          <thead>
+            <tr>
+              <th nzAlign="left" nzWidth="150px">
+                <i nz-icon nzType="appstore" nzTheme="fill"></i>待办事项
+              </th>
+              <th nzAlign="right">
+                <i nz-icon nzType="plus-square" nzTheme="fill"></i>更多
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tableOne.data">
+              <td nzAlign="left">{{ data.event }}</td>
+              <td nzAlign="right">{{ data.time }}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+      <div nz-col nzSpan="10" class="form_table">
+        <nz-table #tableFour [nzData]="listData" nzShowPagination="false">
+          <thead>
+            <tr>
+              <th nzAlign="left" nzWidth="150px">
+                <i nz-icon nzType="appstore" nzTheme="fill"></i>待办事项
+              </th>
+              <th nzAlign="right">
+                <i nz-icon nzType="plus-square" nzTheme="fill"></i>更多
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tableOne.data">
+              <td nzAlign="left">{{ data.event }}</td>
+              <td nzAlign="right">{{ data.time }}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+    <!--  第二行fomr表单end  -->
+  </div>
+  <!-- 侧边功能菜单 start -->
+  <div nz-col nzSpan="3" class="nav_bar">
+    <div nz-row>
+      <div nz-col nzSpan="20" class="nav_box first_nav_box">公文分发</div>
+      <div nz-col nzSpan="20" class="nav_box">签收公文</div>
+      <div nz-col nzSpan="20" class="nav_box">登记收文</div>
+      <div nz-col nzSpan="20" class="nav_box">新建签报</div>
+      <div nz-col nzSpan="20" class="nav_box">已办发文</div>
+    </div>
+  </div>
+  <!-- 侧边功能菜单 start -->
 </div>
