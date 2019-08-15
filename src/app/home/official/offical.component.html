@@ -1,3 +1,21 @@
-<div>
-  This is Official page!
-</div>
+<nz-layout class="left-layout">
+  <nz-sider>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-submenu *ngFor="let menu of datalist" nzTitle="{{menu.title}}" nzIcon="file">
+        <ul>
+          <li nz-menu-item *ngFor="let list of menu.value" (click)="showUrl(list.url)">
+            <i nz-icon nzType="file"></i>
+            <span>{{list.event}}</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="right-layout">
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

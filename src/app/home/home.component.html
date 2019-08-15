@@ -11,13 +11,13 @@
       <div nz-col nzSpan="14" style="text-align: right">
         <nz-breadcrumb nzSeparator="|">
           <nz-breadcrumb-item>
-            <a [routerLink] = "['/home/index']" >工作台</a>
+            <a [routerLink]="['/home/index']">工作台</a>
           </nz-breadcrumb-item>
           <nz-breadcrumb-item>
-            <a [routerLink] = "['/home/official']" >公文管理</a>
+            <a [routerLink]="['/home/official']">公文管理</a>
           </nz-breadcrumb-item>
           <nz-breadcrumb-item>
-            <a [routerLink] = "['/home/supervise']" >督查督办PT</a>
+            <a [routerLink]="['/home/supervise']">督查督办PT</a>
           </nz-breadcrumb-item>
         </nz-breadcrumb>
       </div>
@@ -25,29 +25,22 @@
 
       <!-- 图标列 start -->
       <div nz-col nzSpan="6" class="log_out">
-        <span nz-col nzSpan="18" style="text-align:left">
-          <span class="user_name">{{ username }}</span>
-          ，欢迎您
-        </span>
+        <span nz-col nzSpan="18" class="user_name">{{ username }}，欢迎您</span>
 
-        <span nz-col nzSpan="6">
+        <span nz-col nzSpan="2">
           <i
             nz-icon
             nzType="fullscreen"
-            nz="col"
-            nzSpan="4"
             nzTheme="outline"
-          ></i>
-          <i nz-icon nzType="message" nz="col" nzSpan="4"  nzTheme="outline"></i>
-          <i
-            nz-icon
-            nzType="poweroff"
-            nz="col"
-            nzSpan="4"
-            nzTheme="outline"
-            (click)="exit()"
+            (click)="fullscreen()"
           ></i>
         </span>
+        <span nz-col nzSpan="2"
+          ><i nz-icon nzType="message" nzTheme="outline"></i
+        ></span>
+        <span nz-col nzSpan="2"
+          ><i nz-icon nzType="poweroff" nzTheme="outline" (click)="exit()"></i
+        ></span>
       </div>
     </div>
     <!-- 图标列 end -->

@@ -11,7 +11,7 @@ nz-content {
   width: 100%;
   background: #ffffff;
   box-sizing: border-box;
-  overflow: scroll;
+  /* overflow: scroll; */
   overflow-x: hidden;
 }
 
@@ -38,6 +38,9 @@ nz-breadcrumb-item a {
 .header-menu {
   line-height: 64px;
 }
+.ant-breadcrumb a:hover {
+  color: darkorange;
+}
 
 .inner-layout {
   padding: 0 24px 24px;
@@ -55,15 +58,10 @@ nz-breadcrumb-item a {
 .log_out {
   text-align: right;
   color: whitesmoke;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 }
-
-/* .inner-content {
-  background-color: #ffffff;
-  min-height: 280px;
-} */
 
 .ant-breadcrumb {
   line-height: 64px;
@@ -72,12 +70,15 @@ nz-breadcrumb-item a {
 .user_name {
   color: darkorange;
   font-size: 18px;
-  margin-left: 46%;
   text-decoration: underline;
+  padding-right: 10%;
 }
 
 .anticon {
   margin-right: 10px;
+}
+.log_out[_ngcontent-vbg-c1]:hover {
+  color: darkorange;
 }
 
 .ant-modal-confirm .ant-modal-confirm-btns {
