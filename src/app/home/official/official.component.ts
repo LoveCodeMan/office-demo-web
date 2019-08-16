@@ -15,11 +15,11 @@ export class OfficialComponent implements OnInit {
       value: [
         {
           event: '新建公文',
-          url: '1-1'
+          url: 'home/official/addEdoc'
         },
         {
           event: '新建公文JYB',
-          url: '1-2'
+          url: 'home/official/addJYB'
         },
         {
           event: '待办发文',
@@ -76,19 +76,19 @@ export class OfficialComponent implements OnInit {
         {
           event: '待办收文',
           url: '2-3'
-        },{
+        }, {
           event: '已办收文',
           url: '2-3'
-        },{
+        }, {
           event: '办结收文',
           url: '2-4'
-        },{
+        }, {
           event: '收文收阅箱',
           url: '2-5'
-        },{
+        }, {
           event: '新建收文',
           url: '2-6'
-        },{
+        }, {
           event: '代签收列表',
           url: '2-7'
         },
@@ -97,45 +97,59 @@ export class OfficialComponent implements OnInit {
     {
       title: '待阅管理',
       value: []
-    },{
+    }, {
       title: '待办提醒',
       value: []
-    },{
+    }, {
       title: '签报公文',
       value: []
-    },{
+    }, {
       title: '内部审批',
       value: []
-    },{
+    }, {
       title: '公文打印管理',
       value: []
-    },{
+    }, {
       title: '公文归档',
       value: []
-    },{
+    }, {
       title: '公文设置',
       value: []
-    },{
+    }, {
       title: '公文查询',
       value: []
-    },{
+    }, {
       title: '公文统计',
       value: []
-    },{
+    }, {
       title: '公文销毁',
       value: []
-    },{
+    }, {
       title: '台账管理',
       value: []
     },
   ]
 
+  index = 0;
+  tabs = [];
 
   ngOnInit() {
 
   }
 
+  closeTab(tab: string): void {
+    this.tabs.splice(this.tabs.indexOf(tab), 1);
+  }
+
+  addTab(name,num): void {
+    if (this.tabs.indexOf(name) === -1) {
+      this.tabs.push(name);
+      this.index = this.tabs.length - 1;
+    }
+  }
+
   showUrl(url) {
     this.router.navigate([url])
+    console.log("该项的跳转地址为：" + url)
   }
 }

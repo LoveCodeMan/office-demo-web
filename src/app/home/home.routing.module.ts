@@ -17,7 +17,8 @@ const routes: Routes = [
       },
       {
         path: 'official',
-        component: OfficialComponent
+        // component: OfficialComponent
+        loadChildren: () => import('./official/official.module').then(m => m.OfficialModule)
       },
       {
         path: 'supervise',

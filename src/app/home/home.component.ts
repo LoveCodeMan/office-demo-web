@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.username = sessionStorage.getItem("username")
-    console.log("username的值为：" + this.username)
-    this.router.navigate(['home/index'])
+    // console.log("username的值为：" + this.username)
+    // this.router.navigate(['home/index'])
   }
 
   exit() {

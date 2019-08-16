@@ -1,11 +1,21 @@
 <nz-layout class="left-layout">
   <nz-sider>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-submenu *ngFor="let menu of datalist" nzTitle="{{menu.title}}" nzIcon="file">
+      <li
+        nz-submenu
+        *ngFor="let menu of datalist"
+        nzTitle="{{ menu.title }}"
+        nzIcon="file"
+      >
         <ul>
-          <li nz-menu-item *ngFor="let list of menu.value" (click)="showUrl(list.url)">
+          <li
+            nz-menu-item
+            *ngFor="let list of menu.value, let i of index"
+            (click)="showUrl(list.url)"
+            (click)="addTab(list.event,i)"
+          >
             <i nz-icon nzType="file"></i>
-            <span>{{list.event}}</span>
+            <span>{{ list.event }}</span>
           </li>
         </ul>
       </li>
@@ -14,7 +24,28 @@
   <nz-layout class="right-layout">
     <nz-content>
       <div class="inner-content">
-        <router-outlet></router-outlet>
+        <nz-tabset
+          [nzType]="'card'"
+          [nzSelectedIndex]="index"
+          [nzTabPosition]="left"
+        >
+          <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+            <ng-template #titleTemplate>
+              <div>
+                {{ tab }}
+                <i
+                  nz-icon
+                  nzType="close"
+                  class="ant-tabs-close-x"
+                  (click)="closeTab(tab)"
+                ></i>
+              </div>
+            </ng-template>
+            <!-- 渲染标签内容 start -->
+            <router-outlet></router-outlet>
+            <!-- 渲染标签内容 end -->
+          </nz-tab>
+        </nz-tabset>
       </div>
     </nz-content>
   </nz-layout>
