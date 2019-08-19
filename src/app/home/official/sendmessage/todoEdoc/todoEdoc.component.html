@@ -3,43 +3,93 @@
   nzShowPagination
   nzShowQuickJumper
   nzShowSizeChanger
-  [nzData]="listOfAllData"
+  [nzData]="listData"
   (nzCurrentPageDataChange)="currentPageDataChange($event)"
-  [nzScroll]="{ y: '400px' }"
+  [nzScroll]="{ x: '2450px', y: '400px' }"
 >
   <thead>
     <tr>
-      <th>序号</th>
-      <th>标题</th>
-      <th>预览</th>
-      <th>密级</th>
-      <th>发文字号</th>
-      <th>当前环节</th>
-      <th>拟稿时间</th>
-      <th>到达时间</th>
-      <th>发送人</th>
-      <th>流程名称</th>
-      <th>退回</th>
-      <th>催办</th>
-      <th>超期</th>
-      <th>操作</th>
+      <th nzWidth="100px" nzLeft="0px">序号</th>
+      <th nzWidth="200px" nzLeft="100px">标题</th>
+      <th nzWidth="100px">预览</th>
+      <th nzWidth="100px">密级</th>
+      <th nzWidth="200px">发文字号</th>
+      <th nzWidth="200px">当前环节</th>
+      <th nzWidth="200px">拟稿时间</th>
+      <th nzWidth="200px">到达时间</th>
+      <th nzWidth="200px">发送人</th>
+      <th nzWidth="200px">流程名称</th>
+      <th nzWidth="200px">退回</th>
+      <th nzWidth="200px">催办</th>
+      <th nzWidth="200px">超期</th>
+      <th nzWidth="150px" nzRight="0px">操作</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of rowSelectionTable.data">
-      <td>{{ data.id }}</td>
-      <td>{{ data.title  }}</td>
-      <td>{{ data.review }}</td>
-      <td>{{ data.degree }}</td>
-      <td>{{ data.number }}</td>
-      <td>{{ data.state }}</td>
-      <td>{{ data.wroteTime }}</td>
-      <td>{{ data.arriveTime }}</td>
-      <td>{{ data.send }}</td>
-      <td>{{ data.event }}</td>
-      <td>{{ data.callback }}</td>
-      <td>{{ data.emergency }}</td>
-      <td>{{ data.overTime }}</td>
+      <td nzWidth="100px" nzLeft="0">{{ data.id + 1 }}</td>
+      <td nzWidth="200px" nzLeft="100px">
+        <ng-container *ngIf="!editCache[data.id].edit; else titleInputTpl">
+          {{ data.title }}
+        </ng-container>
+        <ng-template #titleInputTpl>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.title"
+          />
+        </ng-template>
+      </td>
+      <td nzWidth="100px">
+        <a>{{ data.review }}</a>
+      </td>
+      <td nzWidth="100px">{{ data.degree }}</td>
+      <td nzWidth="200px">
+        <ng-container *ngIf="!editCache[data.id].edit; else titleInputTpl">
+          {{ data.number }}
+        </ng-container>
+        <ng-template #titleInputTpl>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.number"
+          />
+        </ng-template>
+      </td>
+      <td nzWidth="200px">{{ data.state }}</td>
+      <td nzWidth="200px">{{ data.wroteTime }}</td>
+      <td nzWidth="200px">{{ data.arriveTime }}</td>
+      <td nzWidth="200px">{{ data.send }}</td>
+      <td nzWidth="200px">
+        <ng-container *ngIf="!editCache[data.id].edit; else titleInputTpl">
+          {{ data.event }}
+        </ng-container>
+        <ng-template #titleInputTpl>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.event"
+          />
+        </ng-template>
+      </td>
+      <td nzWidth="200px">{{ data.callback }}</td>
+      <td nzWidth="200px">{{ data.emergency }}</td>
+      <td nzWidth="200px">{{ data.overTime }}</td>
+      <td nzWidth="150px" nzRight="0px">
+        <ng-container *ngIf="!editCache[data.id].edit; else saveTpl">
+          <a (click)="startEdit(data.id)">编辑</a>
+        </ng-container>
+        <ng-template #saveTpl>
+          <a (click)="saveEdit(data.id)">保存</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a
+            nz-popconfirm
+            nzTitle="是否取消？"
+            (nzOnConfirm)="cancelEdit(data.id)"
+            >取消</a
+          >
+        </ng-template>
+      </td>
     </tr>
-  </tbody>
-</nz-table>
+  </tbody></nz-table
+>

@@ -24,13 +24,12 @@ export interface Data {
 })
 
 export class TodoEdocComponent implements OnInit {
-  isAllDisplayDataChecked = false;
-  isOperating = false;
   isIndeterminate = false;
   listOfDisplayData: Data[] = [];
-  listOfAllData: Data[] = [];
+  listData: Data[] = [];
   mapOfCheckedId: { [key: string]: boolean } = {};
-  numberOfChecked = 0;
+  editCache: { [key: string]: any } = {}
+
 
   currentPageDataChange($event: Data[]): void {
     this.listOfDisplayData = $event;
@@ -38,7 +37,7 @@ export class TodoEdocComponent implements OnInit {
 
   ngOnInit(): void {
     for (let i = 0; i < 100; i++) {
-      this.listOfAllData.push({
+      this.listData.push({
         id: i,
         title: '浪潮云2.0',
         review: '预览',
@@ -54,5 +53,33 @@ export class TodoEdocComponent implements OnInit {
         overTime: false
       });
     }
+    this.updateListData()
+  }
+
+  updateListData() {
+    this.listData.forEach(item => {
+      this.editCache[item.id] = {
+        edit: false,
+        data: { ...item }
+      }
+    })
+  }
+
+  startEdit(id: string): void {
+    this.editCache[id].edit = true;
+  }
+
+  cancelEdit(id: number): void {
+    const index = this.listData.findIndex(item => item.id === id);
+    this.editCache[id] = {
+      data: { ...this.listData[index] },
+      edit: false
+    };
+  }
+
+  saveEdit(id: number): void {
+    const index = this.listData.findIndex(item => item.id === id);
+    Object.assign(this.listData[index], this.editCache[id].data);
+    this.editCache[id].edit = false;
   }
 }

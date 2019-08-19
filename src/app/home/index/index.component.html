@@ -1,6 +1,6 @@
 <div class="index-page">
   <div nz-col nzSpan="21" class="table_display">
-    <!-- 第一行form表单start -->
+    <!-- 第一行form表单 start -->
     <div nz-row class="form_row">
       <div nz-col nzSpan="10" class="form_table">
         <nz-table #tableOne [nzData]="listData" nzShowPagination="false">
@@ -15,7 +15,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of tableOne.data" (dblclick)="alert()">
+            <tr *ngFor="let data of tableOne.data" (dblclick)="alert(data)">
               <td nzAlign="left">{{ data.event }}</td>
               <td nzAlign="right">{{ data.time }}</td>
             </tr>
@@ -94,12 +94,12 @@
   <!-- 侧边功能菜单 start -->
   <div nz-col nzSpan="3" class="nav_bar">
     <div nz-row>
-      <div nz-col nzSpan="20" class="nav_box first_nav_box">公文分发</div>
-      <div nz-col nzSpan="20" class="nav_box">签收公文</div>
-      <div nz-col nzSpan="20" class="nav_box">登记收文</div>
-      <div nz-col nzSpan="20" class="nav_box">新建签报</div>
-      <div nz-col nzSpan="20" class="nav_box">已办发文</div>
+      <div nz-col nzSpan="20" class="nav_box first_nav_box" (click)="sendEdoc()">公文分发</div>
+      <div nz-col nzSpan="20" class="nav_box" (click)="receiveEdoc()">签收公文</div>
+      <div nz-col nzSpan="20" class="nav_box" (click)="signEdoc()">登记收文</div>
+      <div nz-col nzSpan="20" class="nav_box" (click)="addEdoc()">新建签报</div>
+      <div nz-col nzSpan="20" class="nav_box" (click)="completeEdoc()">已办发文</div>
     </div>
   </div>
-  <!-- 侧边功能菜单 start -->
+  <!-- 侧边功能菜单 end -->
 </div>

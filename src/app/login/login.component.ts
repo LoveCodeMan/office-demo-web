@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         this.message.success('登录成功', {
           nzDuration: 1000
         });
-        this.router.navigate(['home'])
+        this.router.navigate(['home/index'])
         sessionStorage.setItem("username",account.username)
       } else {
         this.message.error('此用户不存在', {

@@ -129,27 +129,33 @@ export class OfficialComponent implements OnInit {
       value: []
     },
   ]
-
-  index = 0;
-  tabs = [];
+  index = 0
+  tabs = []
+  links = []
 
   ngOnInit() {
 
   }
 
   closeTab(tab: string): void {
-    this.tabs.splice(this.tabs.indexOf(tab), 1);
+    this.tabs.splice(this.tabs.indexOf(tab), 1)
   }
 
-  addTab(name,num): void {
+  addTab(name, url): void {
     if (this.tabs.indexOf(name) === -1) {
-      this.tabs.push(name);
-      this.index = this.tabs.length - 1;
+      this.tabs.push(name)
+      this.links.push(url)
+      this.index = this.tabs.length - 1
+      this.router.navigate([url])
+    } else if (this.tabs.indexOf(name === 0)) {
+      this.index = this.tabs.indexOf(name)
+      this.router.navigate([url])
     }
   }
 
-  showUrl(url) {
+  currentTab(tab) {
+    let index = this.tabs.indexOf(tab)
+    let url = this.links[index]
     this.router.navigate([url])
-    console.log("该项的跳转地址为：" + url)
   }
 }
