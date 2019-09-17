@@ -68,6 +68,4 @@ export class IndexComponent implements OnInit {
   completeEdoc() {
     alert('已办发文')
   }
-
-
 }

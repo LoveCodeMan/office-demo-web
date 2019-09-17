@@ -25,20 +25,28 @@
 
       <!-- 图标列 start -->
       <div nz-col nzSpan="6" class="log_out">
-        <span nz-col nzSpan="18" class="user_name">{{ username }}，欢迎您</span>
+        <span nz-col nzSpan="15" class="user_name">{{ username }}，欢迎您</span>
 
-        <span nz-col nzSpan="2">
+        <span nz-col nzSpan="3" [ngSwitch]="IconType">
           <i
             nz-icon
+            *ngSwitchCase="1"
             nzType="fullscreen"
             nzTheme="outline"
             (click)="fullscreen()"
           ></i>
+          <i
+            nz-icon
+            *ngSwitchCase="2"
+            nzType="fullscreen-exit"
+            nzTheme="outline"
+            (click)="fullscreen()"
+          ></i>
         </span>
-        <span nz-col nzSpan="2"
-          ><i nz-icon nzType="message" nzTheme="outline"></i
-        ></span>
-        <span nz-col nzSpan="2"
+        <span nz-col nzSpan="3">
+          <i nz-icon nzType="message" nzTheme="outline"></i>
+        </span>
+        <span nz-col nzSpan="3"
           ><i nz-icon nzType="poweroff" nzTheme="outline" (click)="exit()"></i
         ></span>
       </div>

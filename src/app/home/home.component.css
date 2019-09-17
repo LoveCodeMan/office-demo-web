@@ -11,7 +11,6 @@ nz-content {
   width: 100%;
   background: #ffffff;
   box-sizing: border-box;
-  /* overflow: scroll; */
   overflow-x: hidden;
 }
 
@@ -58,8 +57,7 @@ nz-breadcrumb-item a {
 .log_out {
   text-align: right;
   color: whitesmoke;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 22px;
   cursor: pointer;
 }
 
@@ -68,16 +66,20 @@ nz-breadcrumb-item a {
 }
 
 .user_name {
-  color: darkorange;
+  color: #ffffff;
   font-size: 18px;
   text-decoration: underline;
   padding-right: 10%;
+}
+.user_name:hover {
+  color: darkorange;
 }
 
 .anticon {
   margin-right: 10px;
 }
-.log_out[_ngcontent-vbg-c1]:hover {
+
+i:hover {
   color: darkorange;
 }
 

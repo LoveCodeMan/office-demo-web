@@ -9,12 +9,13 @@ import { NzModalService } from 'ng-zorro-antd';
 })
 export class HomeComponent implements OnInit {
   constructor(private router: Router, private modalService: NzModalService, private activedRoute: ActivatedRoute) { }
-  username = ''
+  username = '';
+  isFull = false;
+  IconType = 1;
 
   ngOnInit() {
-    this.username = sessionStorage.getItem("username")
-    // console.log("username的值为：" + this.username)
-    // this.router.navigate(['home/index'])
+    let str= sessionStorage.getItem("username");
+    this.username = str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
   }
 
   exit() {
@@ -30,7 +31,14 @@ export class HomeComponent implements OnInit {
   }
 
   fullscreen() {
-    let element = document.documentElement
-    element.requestFullscreen();
+    this.isFull = !this.isFull;
+    let element = document.documentElement;
+    if (this.isFull) {
+      this.IconType = 2;
+      element.requestFullscreen();
+    } else {
+      this.IconType = 1;
+      document.exitFullscreen();
+    }
   }
 }

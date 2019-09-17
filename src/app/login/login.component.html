@@ -13,10 +13,12 @@
             nz-input
             formControlName="username"
             placeholder="输入用户名"
+            [(ngModel)]="username"
           />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
       <nz-form-control nzErrorTip="请先输入密码">
         <nz-input-group nzPrefixIcon="lock">
@@ -25,10 +27,12 @@
             nz-input
             formControlName="password"
             placeholder="输入密码"
+            [(ngModel)] = "password"
           />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
       <nz-form-control>
         <label nz-checkbox formControlName="remember">
